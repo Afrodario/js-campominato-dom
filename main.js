@@ -38,7 +38,7 @@ function createGrid () {
         //Condizioni di click su bomba
         if (pumpkinBombs.includes(cellClick)) {
             this.classList.add("bomb");
-            alert("Sono su una bomba!");
+            alert("Una bomba zucca è detonata! Devi abbandonare l'edificio!");
             endGame();
 
         } else {
@@ -46,7 +46,7 @@ function createGrid () {
             console.log(attempts);
 
             if (attempts.length >= maxAttempts) {
-                alert("Hai superato il numero di tentativi massimi!");
+                alert("Il Daily Bugle è stato completamente evacuato!");
                 endGame();
             }
 
@@ -76,15 +76,19 @@ function createGrid () {
 
             if (pumpkinBombs.includes(parseInt(cellBoxes[i].innerText))) {
                 cellBoxes[i].classList.add("bomb");
+                cellBoxes[i].innerHTML = ("<img src='img/pumpkin-bomb.png'>");
             }
 
             cellBoxes[i].removeEventListener("click", cellSelect);
 
         }
 
-        const result = document.getElementById("final-result");
         const score = attempts.length;
-        result.innerHTML = score;
+        result.innerHTML = ("Sei riuscito a salvare " + score + " ostaggi prima che il palazzo esplodesse! Prova ancora!");
+
+        if (score == maxAttempts) {
+            result.append("Tutti gli ostaggi sono stati tratti in salvo!");
+        }
 
     }
 
@@ -92,6 +96,7 @@ function createGrid () {
 
 
 const grid = document.getElementById("grid");
+const result = document.getElementById("final-result");
 
 const startGame = document.getElementById("start");
 const optionDifficulty = document.getElementById("selection");
@@ -105,6 +110,7 @@ startGame.addEventListener("click",
     function() {
 
         grid.innerHTML = "";
+        result.innerHTML = "";
         
 
         if (optionDifficulty.value == "easy") {
