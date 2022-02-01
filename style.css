@@ -1,0 +1,81 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.flex {
+    display: flex;
+}
+
+
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    background-color: aquamarine;
+    padding: 40px;
+    background-image: url("https://static2.cbrimages.com/wordpress/wp-content/uploads/2020/03/Spider-Man-and-Green-Goblin-face-off-above-bridge.jpg");
+    background-position: center;
+}
+
+footer {
+    height: 100px;
+}
+
+#panel * {
+    margin: 5px;
+}
+
+button {
+    padding: 10px;
+    color: red;
+    background-color: blue;
+}
+
+#grid {
+    width: 500px;
+    height: 500px;
+    border: 3px solid purple;
+    flex-wrap: wrap;
+}
+
+.cell {
+    border: 1px solid purple;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: green;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.cell:hover {
+    cursor: pointer;
+}
+
+.easy-grid {
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+}
+
+.hard-grid {
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+}
+
+.crazy-grid {
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+}
+
+.select {
+    background-color: blue;
+    color: red;
+}
