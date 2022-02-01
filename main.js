@@ -44,6 +44,7 @@ function createGrid () {
         } else {
             attempts.push(cellClick);
             console.log(attempts);
+            counter.innerHTML = ("Ostaggi tratti in salvo: " + attempts.length);
 
             if (attempts.length >= maxAttempts) {
                 alert("Il Daily Bugle è stato completamente evacuato!");
@@ -84,10 +85,12 @@ function createGrid () {
         }
 
         const score = attempts.length;
-        result.innerHTML = ("Sei riuscito a salvare " + score + " ostaggi prima che il palazzo esplodesse! Prova ancora!");
+        result.innerHTML = ("Sei riuscito a salvare " + score + " ostaggi prima che il palazzo esplodesse!");
 
         if (score == maxAttempts) {
-            result.append("Tutti gli ostaggi sono stati tratti in salvo!");
+            result.append(" Tutti gli ostaggi sono stati tratti in salvo!");
+        } else {
+            result.append(" Prova ancora!");
         }
 
     }
@@ -97,6 +100,7 @@ function createGrid () {
 
 const grid = document.getElementById("grid");
 const result = document.getElementById("final-result");
+const counter = document.getElementById("counter");
 
 const startGame = document.getElementById("start");
 const optionDifficulty = document.getElementById("selection");
@@ -111,6 +115,7 @@ startGame.addEventListener("click",
 
         grid.innerHTML = "";
         result.innerHTML = "";
+        counter.innerHTML = "";
         
 
         if (optionDifficulty.value == "easy") {
