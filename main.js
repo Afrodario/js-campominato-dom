@@ -3,6 +3,8 @@
 function createGrid () {
 
     const bombNumber = 16;
+    const attempts = [];
+    const maxAttempts = 10;
     //Avvio un ciclo che stampi un numero definito di celle con all'interno ogni iterazione di i
 
     for (let i = 1; i <= cellNumb; i++) {
@@ -15,21 +17,44 @@ function createGrid () {
         grid.appendChild(node);
 
         //Aggiungo un ascoltatore di eventi al click
-        node.addEventListener("click", blockCellSelect);
+        node.addEventListener("click", cellSelect);
 
         
     }
 
     //Il programma genera le bombe
-    generateBomb(bombNumber, cellNumb);    
+    const pumpkinBombs = generateBomb(bombNumber, cellNumb);    
 
     //FUNZIONI DI SERVIZIO
-    function blockCellSelect () {
+
+    //Funzione di selezione celle
+    function cellSelect () {
         console.log(this);
         this.classList.add("select");
-        this.removeEventListener("click", blockCellSelect);
+        this.removeEventListener("click", cellSelect);
+
+        const cellClick = parseInt(this.innerText);
+
+        //Condizioni di click su bomba
+        if (pumpkinBombs.includes(cellClick)) {
+            this.classList.add("bomb");
+            alert("Sono su una bomba!");
+            endGame();
+
+        } else {
+            attempts.push(cellClick);
+            console.log(attempts);
+
+            if (attempts.length >= maxAttempts) {
+                alert("Hai superato il numero di tentativi massimi!");
+                endGame();
+            }
+
+        }
+
     }
 
+    //Funzione di generazione bombe
     function generateBomb (bombNumber, cellNumb) {
         const bombArray = [];
         while (bombArray.length < bombNumber) {
@@ -42,6 +67,25 @@ function createGrid () {
         }
         return bombArray;
         
+    }
+
+    //Funzione di fine gioco
+    function endGame() {
+        const cellBoxes = document.getElementsByClassName("cell");
+        for (let i = 0; i < cellBoxes.length; i++) {
+
+            if (pumpkinBombs.includes(parseInt(cellBoxes[i].innerText))) {
+                cellBoxes[i].classList.add("bomb");
+            }
+
+            cellBoxes[i].removeEventListener("click", cellSelect);
+
+        }
+
+        const result = document.getElementById("final-result");
+        const score = attempts.length;
+        result.innerHTML = score;
+
     }
 
 }
