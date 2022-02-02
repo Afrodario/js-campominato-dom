@@ -123,6 +123,13 @@ img {
     width: 200px;
     color: white;
     font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#counter div {
+    width: 40%;
 }
 
 .signature {

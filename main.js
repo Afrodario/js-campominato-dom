@@ -1,3 +1,14 @@
+const grid = document.getElementById("grid");
+const result = document.getElementById("final-result");
+const counter = document.getElementById("counter");
+
+const startGame = document.getElementById("start");
+const optionDifficulty = document.getElementById("selection");
+console.log(optionDifficulty.value);
+
+let cellNumb;
+let cellMax;
+
 
 //Funzione di creazione della griglia dinamica
 function createGrid () {
@@ -86,9 +97,13 @@ function createGrid () {
 
         const score = attempts.length;
         result.innerHTML = ("Sei riuscito a salvare " + score + " ostaggi prima che il palazzo esplodesse!");
+        const finalLogo = document.createElement("div");
+        counter.append(finalLogo);
 
         if (score == maxAttempts) {
             result.append(" Tutti gli ostaggi sono stati tratti in salvo!");
+            finalLogo.innerHTML = ("<img src='img/spider-man-logo.png'>");
+
         } else {
             result.append(" Prova ancora!");
         }
@@ -96,18 +111,6 @@ function createGrid () {
     }
 
 }
-
-
-const grid = document.getElementById("grid");
-const result = document.getElementById("final-result");
-const counter = document.getElementById("counter");
-
-const startGame = document.getElementById("start");
-const optionDifficulty = document.getElementById("selection");
-console.log(optionDifficulty.value);
-
-let cellNumb;
-let cellMax;
 
 //Aggiungo un ascoltatore di eventi al pulsante PLAY che al click selezioni la difficoltà e crei la griglia apposita
 startGame.addEventListener("click",
